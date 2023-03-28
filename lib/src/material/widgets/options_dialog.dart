@@ -28,14 +28,10 @@ class _OptionsDialogState extends State<OptionsDialog> {
             itemCount: widget.options.length,
             itemBuilder: (context, i) {
               return ListTile(
-                onTap: widget.options[i].onTap != null
-                    ? widget.options[i].onTap!
-                    : null,
+                onTap: widget.options[i].onTap != null ? widget.options[i].onTap! : null,
                 leading: Icon(widget.options[i].iconData),
                 title: Text(widget.options[i].title),
-                subtitle: widget.options[i].subtitle != null
-                    ? Text(widget.options[i].subtitle!)
-                    : null,
+                subtitle: widget.options[i].subtitle != null ? Text(widget.options[i].subtitle!) : null,
               );
             },
           ),
