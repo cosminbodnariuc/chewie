@@ -180,15 +180,19 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
           if (chewieController.optionsBuilder != null) {
             await chewieController.optionsBuilder!(context, options);
           } else {
-            await showModalBottomSheet<OptionItem>(
+            final OptionItem? selectedItem = await showModalBottomSheet<OptionItem>(
               context: context,
               isScrollControlled: true,
               useRootNavigator: chewieController.useRootNavigator,
-              builder: (context) => OptionsDialog(
-                options: options,
-                cancelButtonText: chewieController.optionsTranslation?.cancelButtonText,
-              ),
+              builder: (context) {
+                return OptionsDialog(
+                  options: options,
+                  cancelButtonText: chewieController.optionsTranslation?.cancelButtonText,
+                );
+              },
             );
+
+            selectedItem?.onTap?.call();
           }
 
           if (_latestValue.isPlaying) {

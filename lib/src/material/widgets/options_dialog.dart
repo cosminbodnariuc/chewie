@@ -1,7 +1,7 @@
 import 'package:chewie/src/models/option_item.dart';
 import 'package:flutter/material.dart';
 
-class OptionsDialog extends StatefulWidget {
+class OptionsDialog extends StatelessWidget {
   const OptionsDialog({
     Key? key,
     required this.options,
@@ -12,26 +12,20 @@ class OptionsDialog extends StatefulWidget {
   final String? cancelButtonText;
 
   @override
-  // ignore: library_private_types_in_public_api
-  _OptionsDialogState createState() => _OptionsDialogState();
-}
-
-class _OptionsDialogState extends State<OptionsDialog> {
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: <Widget>[
           ListView.builder(
             shrinkWrap: true,
-            itemCount: widget.options.length,
+            itemCount: options.length,
             itemBuilder: (context, i) {
               return ListTile(
-                onTap: widget.options[i].onTap != null ? widget.options[i].onTap! : null,
-                leading: Icon(widget.options[i].iconData),
-                title: Text(widget.options[i].title),
-                subtitle: widget.options[i].subtitle != null ? Text(widget.options[i].subtitle!) : null,
+                onTap: () => Navigator.of(context).pop(options[i]),
+                leading: Icon(options[i].iconData),
+                title: Text(options[i].title),
+                subtitle: options[i].subtitle != null ? Text(options[i].subtitle!) : null,
               );
             },
           ),
@@ -45,7 +39,7 @@ class _OptionsDialogState extends State<OptionsDialog> {
             onTap: () => Navigator.pop(context),
             leading: const Icon(Icons.close),
             title: Text(
-              widget.cancelButtonText ?? 'Cancel',
+              cancelButtonText ?? 'Cancel',
             ),
           ),
         ],
