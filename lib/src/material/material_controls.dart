@@ -176,7 +176,6 @@ class _MaterialControlsState extends State<MaterialControls> with SingleTickerPr
       child: IconButton(
         onPressed: () async {
           _hideTimer?.cancel();
-          Navigator.of(context).pop();
 
           if (chewieController.optionsBuilder != null) {
             await chewieController.optionsBuilder!(context, options);
